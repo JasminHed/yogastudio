@@ -6,6 +6,7 @@ import Classes from "./components/Classes.jsx";
 import Schedule from "./components/Schedule.jsx";
 import Pricing from "./components/Pricing.jsx";
 import Retreat from "./components/Retreat.jsx";
+import Faq from "./components/Faq.jsx";
 import Footer from "./components/Footer.jsx";
 import AuthModal from "./components/AuthModal.jsx";
 import PaymentModal from "./components/PaymentModal.jsx";
@@ -30,6 +31,7 @@ export default function App() {
         <Pricing />
         <Schedule />
         <Retreat />
+        <Faq />
       </main>
 
       <Footer />
