@@ -7,8 +7,8 @@ export default function About() {
     >
       <div className="overflow-hidden rounded-xl">
         <img
-          src="/images/om-studion.jpg"
-          alt="Hoprullade yogamattor i olika färger, förvarade i öppna hyllfack i studion."
+          src="/images/featuremeditation.jpg"
+          alt="Närbild på en hand som vilar mot ett knä under en lugn stund av meditation."
           width="1600"
           height="1600"
           loading="lazy"

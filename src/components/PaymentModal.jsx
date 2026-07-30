@@ -31,7 +31,7 @@ export default function PaymentModal() {
             inputMode="numeric"
             placeholder="4242 4242 4242 4242"
             required
-            className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
+            className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
           />
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
@@ -42,7 +42,7 @@ export default function PaymentModal() {
               type="text"
               placeholder="MM/ÅÅ"
               required
-              className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
+              className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
             />
           </div>
           <div className="flex flex-1 flex-col gap-1.5">
@@ -53,7 +53,7 @@ export default function PaymentModal() {
               inputMode="numeric"
               placeholder="123"
               required
-              className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
+              className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
             />
           </div>
         </div>

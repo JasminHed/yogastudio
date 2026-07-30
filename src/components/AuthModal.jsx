@@ -29,7 +29,7 @@ export default function AuthModal() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
+            className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -40,7 +40,7 @@ export default function AuthModal() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
+            className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
           />
         </div>
         <button

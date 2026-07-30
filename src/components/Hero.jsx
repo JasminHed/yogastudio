@@ -9,8 +9,8 @@ export default function Hero() {
   return (
     <section id="top" className="relative">
       <img
-        src="/images/hero.jpg"
-        alt="Kvinna sitter i skräddarställning med slutna ögon på golvet i en ljus, minimalistisk yogastudio."
+        src="/images/featureyoga.jpg"
+        alt="Yogamatta, växt och bärbar dator i ett soligt, minimalistiskt rum."
         width="2400"
         height="1500"
         loading="eager"

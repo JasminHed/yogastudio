@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useBooking } from "../context/BookingContext.jsx";
 import { scrollToId } from "../lib/scrollTo.js";
 import AccountPanel from "./AccountPanel.jsx";
@@ -13,17 +13,37 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { user, accountOpen, setAccountOpen, requestBooking } = useBooking();
 
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 40);
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const solid = scrolled || open;
+
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-line bg-white/90 px-[6vw] py-6 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-[6vw] py-6 transition-colors duration-300 ${
+        solid
+          ? "border-b border-line bg-white/90 backdrop-blur"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <a
         href="#top"
         onClick={(e) => {
           e.preventDefault();
           scrollToId("top");
         }}
-        className="text-xl font-extrabold tracking-tight text-ink"
+        className={`text-xl font-extrabold tracking-tight transition-colors ${
+          solid ? "text-ink" : "text-white [text-shadow:0_1px_10px_rgb(0_0_0_/_0.35)]"
+        }`}
       >
         Yogastudio
       </a>
@@ -36,9 +56,9 @@ export default function Header() {
         className="relative block h-5 w-6 sm:hidden"
       >
         <span className="sr-only">Meny</span>
-        <span className="absolute left-0 top-0 h-0.5 w-6 bg-ink" />
-        <span className="absolute left-0 top-2 h-0.5 w-6 bg-ink" />
-        <span className="absolute left-0 top-4 h-0.5 w-6 bg-ink" />
+        <span className={`absolute left-0 top-0 h-0.5 w-6 transition-colors ${solid ? "bg-ink" : "bg-white"}`} />
+        <span className={`absolute left-0 top-2 h-0.5 w-6 transition-colors ${solid ? "bg-ink" : "bg-white"}`} />
+        <span className={`absolute left-0 top-4 h-0.5 w-6 transition-colors ${solid ? "bg-ink" : "bg-white"}`} />
       </button>
 
       <nav
@@ -46,7 +66,7 @@ export default function Header() {
         aria-label="Huvudmeny"
         className={`${
           open ? "flex" : "hidden"
-        } absolute left-0 right-0 top-full flex-col gap-4 border-b border-line bg-white px-[6vw] py-6 sm:static sm:flex sm:flex-row sm:items-center sm:gap-8 sm:border-none sm:p-0`}
+        } absolute left-0 right-0 top-full flex-col gap-4 border-b border-line bg-white px-[6vw] py-6 sm:static sm:flex sm:flex-row sm:items-center sm:gap-8 sm:border-none sm:bg-transparent sm:p-0`}
       >
         {links.map((link) => (
           <a
@@ -57,7 +77,9 @@ export default function Header() {
               setOpen(false);
               scrollToId(link.href.slice(1));
             }}
-            className="border-b border-transparent pb-1 text-[0.95rem] text-ink hover:border-ink"
+            className={`border-b border-transparent pb-1 text-[0.95rem] transition-colors hover:border-current ${
+              solid ? "text-ink" : "text-ink sm:text-white sm:[text-shadow:0_1px_10px_rgb(0_0_0_/_0.35)]"
+            }`}
           >
             {link.label}
           </a>
