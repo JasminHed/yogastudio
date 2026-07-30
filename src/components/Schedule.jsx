@@ -53,16 +53,6 @@ function DayColumn({ day, classes }) {
                 >
                   Boka
                 </button>
-              ) : user ? (
-                <button
-                  type="button"
-                  onClick={() =>
-                    requestBooking({ id, kind: "class", label: `${day} ${cls.time} ${cls.name}`, price: dropInPrice })
-                  }
-                  className="whitespace-nowrap rounded border border-line px-2.5 py-1 text-xs font-bold text-muted hover:border-ink hover:text-ink"
-                >
-                  Köp för att boka
-                </button>
               ) : null}
             </div>
           );
