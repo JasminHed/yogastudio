@@ -17,6 +17,7 @@ export default function AccountPanel() {
 
   useEffect(() => {
     function handleClickOutside(event) {
+      if (event.target.closest("[data-account-toggle]")) return;
       if (panelRef.current && !panelRef.current.contains(event.target)) {
         setAccountOpen(false);
       }

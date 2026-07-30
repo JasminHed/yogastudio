@@ -53,7 +53,7 @@ export default function Header() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls="primary-nav"
-        className="relative block h-5 w-6 sm:hidden"
+        className="relative block h-5 w-6 md:hidden"
       >
         <span className="sr-only">Meny</span>
         <span className={`absolute left-0 top-0 h-0.5 w-6 transition-colors ${solid ? "bg-ink" : "bg-white"}`} />
@@ -66,7 +66,7 @@ export default function Header() {
         aria-label="Huvudmeny"
         className={`${
           open ? "flex" : "hidden"
-        } absolute left-0 right-0 top-full flex-col gap-4 border-b border-line bg-white px-[6vw] py-6 sm:static sm:flex sm:flex-row sm:items-center sm:gap-8 sm:border-none sm:bg-transparent sm:p-0`}
+        } absolute left-0 right-0 top-full flex-col gap-4 border-b border-line bg-white px-[6vw] py-6 md:static md:flex md:flex-row md:items-center md:gap-6 md:border-none md:bg-transparent md:p-0 lg:gap-8`}
       >
         {links.map((link) => (
           <a
@@ -78,7 +78,7 @@ export default function Header() {
               scrollToId(link.href.slice(1));
             }}
             className={`border-b border-transparent pb-1 text-[0.95rem] transition-colors hover:border-current ${
-              solid ? "text-ink" : "text-ink sm:text-white sm:[text-shadow:0_1px_10px_rgb(0_0_0_/_0.35)]"
+              solid ? "text-ink" : "text-ink md:text-white md:[text-shadow:0_1px_10px_rgb(0_0_0_/_0.35)]"
             }`}
           >
             {link.label}
@@ -88,6 +88,7 @@ export default function Header() {
         {user ? (
           <button
             type="button"
+            data-account-toggle
             onClick={() => {
               setOpen(false);
               setAccountOpen((v) => !v);
@@ -114,9 +115,9 @@ export default function Header() {
               setOpen(false);
               requestBooking(null);
             }}
-            className="w-fit rounded bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-accent"
+            className="w-fit whitespace-nowrap rounded bg-ink px-3 py-2 text-xs font-bold text-white hover:bg-accent sm:px-4 sm:text-sm"
           >
-            Logga in
+            Skapa konto/Logga in
           </button>
         )}
       </nav>

@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "yogastudio-demo-notice-dismissed";
-
 export default function DemoNotice() {
-  const [dismissed, setDismissed] = useState(true);
+  const [dismissed, setDismissed] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY) === "true") return;
-    setDismissed(false);
     const timer = setTimeout(() => setVisible(true), 1200);
     return () => clearTimeout(timer);
   }, []);
 
   function dismiss() {
     setVisible(false);
-    localStorage.setItem(STORAGE_KEY, "true");
     setTimeout(() => setDismissed(true), 300);
   }
 

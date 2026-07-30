@@ -35,7 +35,7 @@ export default function PaymentModal() {
           />
         </div>
         <div className="flex flex-col gap-4 sm:flex-row">
-          <div className="flex flex-1 flex-col gap-1.5">
+          <div className="flex min-w-0 flex-1 flex-col gap-1.5">
             <label className="text-sm font-semibold text-muted" htmlFor="card-expiry">Utgångsdatum</label>
             <input
               id="card-expiry"
@@ -45,7 +45,7 @@ export default function PaymentModal() {
               className="rounded border border-line px-3 py-2 text-sm text-ink focus:border-accent focus:outline-none sm:px-4 sm:py-3 sm:text-base"
             />
           </div>
-          <div className="flex flex-1 flex-col gap-1.5">
+          <div className="flex min-w-0 flex-1 flex-col gap-1.5">
             <label className="text-sm font-semibold text-muted" htmlFor="card-cvc">CVC</label>
             <input
               id="card-cvc"
