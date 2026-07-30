@@ -1,50 +1,63 @@
 import { useBooking } from "../context/BookingContext.jsx";
 
-const rows = [
-  { day: "Måndag", morning: { time: "07.00", name: "Vinyasa" }, evening: { time: "18.00", name: "Hatha" } },
-  { day: "Tisdag", morning: { time: "12.00", name: "Yin" }, evening: { time: "18.00", name: "Vinyasa" } },
-  { day: "Onsdag", morning: { time: "07.00", name: "Hatha" }, evening: { time: "19.00", name: "Sound Healing" } },
-  { day: "Torsdag", morning: { time: "12.00", name: "Vinyasa" }, evening: { time: "18.00", name: "Yin" } },
-  { day: "Fredag", morning: { time: "09.00", name: "Hatha" }, evening: { time: "17.00", name: "Vinyasa" } },
-  { day: "Lördag", morning: { time: "09.00", name: "Vinyasa" }, evening: { time: "13.00", name: "Yin" } },
-  { day: "Söndag", morning: { time: "10.00", name: "Sound Healing" }, evening: { time: "16.00", name: "Hatha" } },
+const week = [
+  { day: "Måndag", classes: [{ time: "07.00", name: "Vinyasa" }, { time: "18.00", name: "Hatha" }] },
+  { day: "Tisdag", classes: [{ time: "18.00", name: "Yin" }] },
+  { day: "Onsdag", classes: [{ time: "07.00", name: "Hatha" }, { time: "19.00", name: "Sound Healing" }] },
+  { day: "Torsdag", classes: [{ time: "18.00", name: "Vinyasa" }] },
+  { day: "Fredag", classes: [{ time: "09.00", name: "Hatha" }, { time: "17.00", name: "Vinyasa" }] },
+  { day: "Lördag", classes: [{ time: "10.00", name: "Sound Healing" }] },
+  { day: "Söndag", classes: [{ time: "16.00", name: "Hatha" }] },
 ];
 
 const dropInPrice = "220 kr";
 
-function slotId(day, slot) {
-  return `${day}-${slot.time}-${slot.name}`.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
+function slotId(day, cls) {
+  return `${day}-${cls.time}-${cls.name}`.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
 }
 
-function Slot({ day, slot }) {
+function DayColumn({ day, classes }) {
   const { isBooked, requestBooking, cancelBooking } = useBooking();
-  const id = slotId(day, slot);
-  const booked = isBooked(id);
 
   return (
-    <div className="flex items-center justify-between gap-3">
-      <span>
-        {slot.time} {slot.name}
-      </span>
-      {booked ? (
-        <button
-          type="button"
-          onClick={() => cancelBooking(id)}
-          className="whitespace-nowrap text-xs font-bold text-accent hover:underline"
-        >
-          ✓ Bokad · Avboka
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={() =>
-            requestBooking({ id, kind: "class", label: `${day} ${slot.time} ${slot.name}`, price: dropInPrice })
-          }
-          className="whitespace-nowrap rounded bg-ink px-3 py-1 text-xs font-bold text-white hover:bg-accent"
-        >
-          Boka
-        </button>
-      )}
+    <div className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
+      <div className="bg-accentsoft px-4 py-3 text-center text-sm font-bold uppercase tracking-wide text-ink">
+        {day}
+      </div>
+      <div className="divide-y divide-line">
+        {classes.length === 0 && <p className="px-4 py-5 text-center text-xs text-muted">Inga pass</p>}
+        {classes.map((cls) => {
+          const id = slotId(day, cls);
+          const booked = isBooked(id);
+          return (
+            <div key={id} className="flex items-center justify-between gap-2 px-4 py-3">
+              <div>
+                <p className="text-sm font-semibold text-ink">{cls.time}</p>
+                <p className="text-xs text-muted">{cls.name}</p>
+              </div>
+              {booked ? (
+                <button
+                  type="button"
+                  onClick={() => cancelBooking(id)}
+                  className="whitespace-nowrap text-xs font-bold text-accent hover:underline"
+                >
+                  ✓ Bokad
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() =>
+                    requestBooking({ id, kind: "class", label: `${day} ${cls.time} ${cls.name}`, price: dropInPrice })
+                  }
+                  className="whitespace-nowrap rounded bg-ink px-2.5 py-1 text-xs font-bold text-white hover:bg-accent"
+                >
+                  Boka
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -58,46 +71,15 @@ export default function Schedule() {
           Höstterminens pass
         </h2>
         <p className="mt-3 text-muted">
-          Gäller höstterminen 2026. Vårens schema publiceras i december. Klicka
-          Boka bredvid ett pass för att reservera din plats.
+          Gäller höstterminen 2026. Vårens schema publiceras i december.
+          Klicka Boka på ett pass för att reservera din plats.
         </p>
       </div>
 
-      <div className="mx-auto max-w-[900px] overflow-x-auto rounded-xl border border-line bg-white p-2 shadow-md sm:p-4">
-        <table className="w-full min-w-[520px] border-collapse">
-          <caption className="sr-only">Veckoschema för yogapass på Yogastudio, höstterminen 2026</caption>
-          <thead>
-            <tr>
-              {["Dag", "Förmiddag", "Kväll"].map((h) => (
-                <th
-                  key={h}
-                  scope="col"
-                  className="border-b border-line bg-accentsoft px-5 py-4 text-left text-sm font-semibold uppercase tracking-wide text-muted first:rounded-tl-lg last:rounded-tr-lg"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={row.day}>
-                <th
-                  scope="row"
-                  className={`px-5 py-4 text-left font-semibold text-ink ${i < rows.length - 1 ? "border-b border-line" : ""}`}
-                >
-                  {row.day}
-                </th>
-                <td className={`px-5 py-4 ${i < rows.length - 1 ? "border-b border-line" : ""}`}>
-                  <Slot day={row.day} slot={row.morning} />
-                </td>
-                <td className={`px-5 py-4 ${i < rows.length - 1 ? "border-b border-line" : ""}`}>
-                  <Slot day={row.day} slot={row.evening} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
+        {week.map(({ day, classes }) => (
+          <DayColumn key={day} day={day} classes={classes} />
+        ))}
       </div>
     </section>
   );

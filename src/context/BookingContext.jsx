@@ -11,10 +11,21 @@ export function BookingProvider({ children }) {
   const [paymentOpen, setPaymentOpen] = useState(false);
   const [pendingItem, setPendingItem] = useState(null);
 
+  function goToDashboard() {
+    // Wait for the next render so #mina-bokningar exists before scrolling.
+    setTimeout(() => {
+      document.getElementById("mina-bokningar")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }
+
   function login(name, email) {
     setUser({ name, email });
     setAuthOpen(false);
-    if (pendingItem) setPaymentOpen(true);
+    if (pendingItem) {
+      setPaymentOpen(true);
+    } else {
+      goToDashboard();
+    }
   }
 
   function logout() {
@@ -50,6 +61,7 @@ export function BookingProvider({ children }) {
     }
     setPaymentOpen(false);
     setPendingItem(null);
+    goToDashboard();
   }
 
   function closeAuth() {
