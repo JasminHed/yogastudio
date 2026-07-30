@@ -7,45 +7,45 @@ export default function Hero() {
   }
 
   return (
-    <section id="top" className="mx-auto grid max-w-[1400px] items-center gap-12 px-[6vw] py-24 sm:grid-cols-2">
-      <div>
-        <p className="mb-3 text-sm font-bold uppercase tracking-widest text-accent">
+    <section id="top" className="relative">
+      <img
+        src="/images/hero.jpg"
+        alt="Kvinna sitter i skräddarställning med slutna ögon på golvet i en ljus, minimalistisk yogastudio."
+        width="2400"
+        height="1500"
+        loading="eager"
+        className="h-[78vh] min-h-[520px] w-full object-cover object-[30%_center] sm:h-screen"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+
+      <div className="absolute inset-0 flex flex-col justify-end p-[6vw] pb-14 sm:pb-20">
+        <p className="mb-3 text-sm font-bold uppercase tracking-widest text-white/90">
           Yoga i Stockholm
         </p>
-        <h1 className="mb-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+        <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
           Rum att andas ut i.
         </h1>
-        <p className="mb-8 max-w-[42ch] text-lg text-muted">
+        <p className="mb-8 max-w-[42ch] text-lg text-white/85">
           Vinyasa, Yin, Hatha och Sound Healing i en ljus studio på Södermalm.
           Drop-in, klass, månadskort eller årskort. Du väljer takten.
         </p>
         <div className="flex flex-wrap gap-4">
           <a
-            href="#schema"
-            onClick={(e) => handleNavClick(e, "schema")}
-            className="rounded bg-ink px-7 py-3 font-bold text-white hover:bg-accent"
+            href="#medlemskap"
+            onClick={(e) => handleNavClick(e, "medlemskap")}
+            className="rounded bg-white px-7 py-3 font-bold text-ink hover:bg-accentsoft"
           >
             Boka plats
           </a>
           <a
-            href="#medlemskap"
-            onClick={(e) => handleNavClick(e, "medlemskap")}
-            className="rounded border border-ink px-7 py-3 font-bold text-ink hover:bg-ink hover:text-white"
+            href="#schema"
+            onClick={(e) => handleNavClick(e, "schema")}
+            className="rounded border border-white px-7 py-3 font-bold text-white hover:bg-white hover:text-ink"
           >
-            Se priser
+            Se schema
           </a>
         </div>
-      </div>
-
-      <div className="order-first overflow-hidden rounded-xl sm:order-none">
-        <img
-          src="/images/hero.jpg"
-          alt="Kvinna sitter i skräddarställning med slutna ögon på golvet i en ljus, minimalistisk yogastudio."
-          width="1800"
-          height="1800"
-          loading="eager"
-          className="aspect-square w-full object-cover"
-        />
       </div>
     </section>
   );

@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useBooking } from "../context/BookingContext.jsx";
 import { scrollToId } from "../lib/scrollTo.js";
+import AccountPanel from "./AccountPanel.jsx";
 
 const links = [
   { href: "#klasser", label: "Klasser" },
-  { href: "#schema", label: "Schema" },
   { href: "#medlemskap", label: "Medlemskap" },
-  { href: "#behandlingar", label: "Behandlingar" },
+  { href: "#schema", label: "Schema" },
+  { href: "#retreat", label: "Retreat" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { user, logout, requestBooking } = useBooking();
+  const { user, accountOpen, setAccountOpen, requestBooking } = useBooking();
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-line bg-white/90 px-[6vw] py-6 backdrop-blur">
@@ -63,17 +64,17 @@ export default function Header() {
         ))}
 
         {user ? (
-          <a
-            href="#mina-bokningar"
-            onClick={(e) => {
-              e.preventDefault();
+          <button
+            type="button"
+            onClick={() => {
               setOpen(false);
-              scrollToId("mina-bokningar");
+              setAccountOpen((v) => !v);
             }}
+            aria-expanded={accountOpen}
             className="rounded bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-accent"
           >
             Hej, {user.name.split(" ")[0] || user.name}
-          </a>
+          </button>
         ) : (
           <button
             type="button"
@@ -86,20 +87,9 @@ export default function Header() {
             Logga in
           </button>
         )}
-
-        {user && (
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              logout();
-            }}
-            className="w-fit text-sm font-semibold text-muted hover:text-ink"
-          >
-            Logga ut
-          </button>
-        )}
       </nav>
+
+      <AccountPanel />
     </header>
   );
 }

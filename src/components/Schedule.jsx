@@ -17,7 +17,7 @@ function slotId(day, cls) {
 }
 
 function DayColumn({ day, classes }) {
-  const { isBooked, requestBooking, cancelBooking } = useBooking();
+  const { user, isBooked, requestBooking, cancelBooking } = useBooking();
 
   return (
     <div className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
@@ -43,7 +43,7 @@ function DayColumn({ day, classes }) {
                 >
                   ✓ Bokad
                 </button>
-              ) : (
+              ) : user ? (
                 <button
                   type="button"
                   onClick={() =>
@@ -53,7 +53,7 @@ function DayColumn({ day, classes }) {
                 >
                   Boka
                 </button>
-              )}
+              ) : null}
             </div>
           );
         })}
@@ -72,7 +72,8 @@ export default function Schedule() {
         </h2>
         <p className="mt-3 text-muted">
           Gäller höstterminen 2026. Vårens schema publiceras i december.
-          Klicka Boka på ett pass för att reservera din plats.
+          Logga in för att boka, du behöver ett drop-in eller kort sedan
+          innan.
         </p>
       </div>
 

@@ -2,7 +2,7 @@ const classes = [
   {
     name: "Vinyasa",
     desc: "Flödande, andningsstyrda sekvenser som byggs upp i tempo. Stärkande och svettigt, med utrymme för egen rytm.",
-    meta: "60–75 min · Alla nivåer",
+    meta: "75 min · Alla nivåer",
   },
   {
     name: "Yin",
@@ -19,6 +19,16 @@ const classes = [
     desc: "Liggande, guidad avslappning till klangskålar och gonggong. Inget rörelsepass, bara vila, djupt och medvetet.",
     meta: "50 min · Alla nivåer",
   },
+  {
+    name: "Restorative",
+    desc: "Fullt understödda positioner med kuddar, bolster och filtar. Kroppen får vila helt i varje position, utan att jobba.",
+    meta: "60 min · Alla nivåer",
+  },
+  {
+    name: "Ashtanga",
+    desc: "En fast, traditionell serie av positioner i bestämd ordning. Fysiskt utmanande, med samma flöde varje gång.",
+    meta: "75 min · Erfarna utövare",
+  },
 ];
 
 export default function Classes() {
@@ -28,11 +38,11 @@ export default function Classes() {
         <div className="mb-12 max-w-[60ch]">
           <p className="mb-3 text-sm font-bold uppercase tracking-widest text-accent">Klasser</p>
           <h2 id="klasser-heading" className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-            Fyra klasser att välja mellan
+            Klasser att välja mellan
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {classes.map((c) => (
             <article key={c.name} className="flex flex-col gap-3 bg-white p-9">
               <h3 className="text-xl font-extrabold text-ink">{c.name}</h3>

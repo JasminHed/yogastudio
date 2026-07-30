@@ -6,7 +6,7 @@ export default function Footer() {
         <address className="not-italic leading-relaxed text-muted">
           Hornsgatan 45, 118 49 Stockholm
           <br />
-          <a className="hover:text-ink" href="mailto:hej@yogastudio.se">hej@yogastudio.se</a>
+          <a className="hover:text-ink" href="mailto:info@yogastudio.se">info@yogastudio.se</a>
         </address>
       </div>
     </footer>

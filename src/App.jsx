@@ -5,11 +5,11 @@ import About from "./components/About.jsx";
 import Classes from "./components/Classes.jsx";
 import Schedule from "./components/Schedule.jsx";
 import Pricing from "./components/Pricing.jsx";
-import Treatments from "./components/Treatments.jsx";
-import MyBookings from "./components/MyBookings.jsx";
+import Retreat from "./components/Retreat.jsx";
 import Footer from "./components/Footer.jsx";
 import AuthModal from "./components/AuthModal.jsx";
 import PaymentModal from "./components/PaymentModal.jsx";
+import DemoNotice from "./components/DemoNotice.jsx";
 
 export default function App() {
   return (
@@ -27,16 +27,16 @@ export default function App() {
         <Hero />
         <About />
         <Classes />
-        <Schedule />
         <Pricing />
-        <Treatments />
-        <MyBookings />
+        <Schedule />
+        <Retreat />
       </main>
 
       <Footer />
 
       <AuthModal />
       <PaymentModal />
+      <DemoNotice />
     </BookingProvider>
   );
 }

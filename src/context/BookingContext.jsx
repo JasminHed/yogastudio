@@ -3,33 +3,27 @@ import { scrollToId } from "../lib/scrollTo.js";
 
 const BookingContext = createContext(null);
 
+function capitalizeName(name) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
 export function BookingProvider({ children }) {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [membership, setMembership] = useState(null);
+  const [dropInCredits, setDropInCredits] = useState(0);
 
+  const [accountOpen, setAccountOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [paymentOpen, setPaymentOpen] = useState(false);
   const [pendingItem, setPendingItem] = useState(null);
 
-  function goToDashboard() {
-    // Wait for the next render so #mina-bokningar exists before scrolling.
-    setTimeout(() => scrollToId("mina-bokningar"), 50);
-  }
-
-  function login(name, email) {
-    setUser({ name, email });
-    setAuthOpen(false);
-    if (pendingItem) {
-      setPaymentOpen(true);
-    } else {
-      goToDashboard();
-    }
-  }
-
-  function logout() {
-    setUser(null);
-    setPendingItem(null);
+  function hasAccess() {
+    return Boolean(membership) || dropInCredits > 0;
   }
 
   function isBooked(id) {
@@ -40,27 +34,68 @@ export function BookingProvider({ children }) {
     setBookings((prev) => prev.filter((b) => b.id !== id));
   }
 
-  // Called from a "Boka"/"Köp" button on a class, treatment or membership plan.
+  function bookClassNow(item) {
+    setBookings((prev) => [...prev, item]);
+    if (!membership) {
+      setDropInCredits((c) => Math.max(0, c - 1));
+    }
+    setAccountOpen(true);
+  }
+
+  // Entry point for both "Boka" (class) and "Köp" (plan) buttons.
   function requestBooking(item) {
-    setPendingItem(item);
     if (!user) {
+      setPendingItem(item);
       setAuthOpen(true);
+      return;
+    }
+    proceedWithItem(item);
+  }
+
+  function proceedWithItem(item) {
+    if (!item) {
+      setAccountOpen(true);
+      return;
+    }
+    if (item.kind === "class") {
+      if (hasAccess()) {
+        bookClassNow(item);
+      } else {
+        setAccountOpen(false);
+        scrollToId("medlemskap");
+      }
     } else {
+      // Membership or drop-in purchase: always goes through the payment step.
+      setPendingItem(item);
       setPaymentOpen(true);
     }
   }
 
-  // Called when the (fake) payment form is confirmed.
+  function login(name, email) {
+    setUser({ name: capitalizeName(name), email });
+    setAuthOpen(false);
+    const item = pendingItem;
+    setPendingItem(null);
+    proceedWithItem(item);
+  }
+
+  function logout() {
+    setUser(null);
+    setPendingItem(null);
+    setAccountOpen(false);
+  }
+
+  // Called when the (fake) payment form for a plan purchase is confirmed.
   function confirmPayment() {
     if (!pendingItem) return;
     if (pendingItem.kind === "membership") {
       setMembership(pendingItem.label);
-    } else {
-      setBookings((prev) => [...prev, pendingItem]);
+    } else if (pendingItem.kind === "dropin") {
+      setDropInCredits((c) => c + 1);
     }
     setPaymentOpen(false);
     setPendingItem(null);
-    goToDashboard();
+    setAccountOpen(true);
   }
 
   function closeAuth() {
@@ -81,6 +116,10 @@ export function BookingProvider({ children }) {
     isBooked,
     cancelBooking,
     membership,
+    dropInCredits,
+    hasAccess,
+    accountOpen,
+    setAccountOpen,
     authOpen,
     paymentOpen,
     pendingItem,
