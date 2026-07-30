@@ -30,7 +30,7 @@ export default function AccountPanel() {
   return (
     <div
       ref={panelRef}
-      className="absolute right-[6vw] top-full z-50 mt-2 w-[calc(100vw-12vw)] max-w-sm rounded-xl border border-line bg-white p-6 shadow-xl"
+      className="absolute right-[6vw] top-full z-50 mt-2 max-h-[calc(100vh-7rem)] w-[calc(100vw-12vw)] max-w-sm overflow-y-auto rounded-xl border border-line bg-white p-6 shadow-xl"
     >
       <div className="mb-4 flex items-start justify-between gap-4">
         <div>

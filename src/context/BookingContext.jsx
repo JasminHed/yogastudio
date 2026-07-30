@@ -83,6 +83,9 @@ export function BookingProvider({ children }) {
     setUser(null);
     setPendingItem(null);
     setAccountOpen(false);
+    setBookings([]);
+    setMembership(null);
+    setDropInCredits(0);
   }
 
   // Called when the (fake) payment form for a plan purchase is confirmed.

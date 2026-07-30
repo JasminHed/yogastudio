@@ -34,7 +34,7 @@ export default function PaymentModal() {
             className="rounded border border-line px-4 py-3 text-ink focus:border-accent focus:outline-none"
           />
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row">
           <div className="flex flex-1 flex-col gap-1.5">
             <label className="text-sm font-semibold text-muted" htmlFor="card-expiry">Utgångsdatum</label>
             <input

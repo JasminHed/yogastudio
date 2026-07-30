@@ -71,9 +71,19 @@ export default function Header() {
               setAccountOpen((v) => !v);
             }}
             aria-expanded={accountOpen}
-            className="rounded bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-accent"
+            className="flex items-center gap-2 rounded bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-accent"
           >
             Hej, {user.name.split(" ")[0] || user.name}
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              aria-hidden="true"
+              className={`transition-transform ${accountOpen ? "rotate-180" : ""}`}
+            >
+              <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         ) : (
           <button
