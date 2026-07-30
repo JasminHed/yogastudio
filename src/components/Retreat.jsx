@@ -29,20 +29,34 @@ export default function Retreat() {
           </p>
         </div>
 
-        <div className="grid max-w-3xl grid-cols-1 gap-4 rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:grid-cols-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-white/60">När</p>
-            <p className="mt-1 font-semibold">12–17 maj 2027</p>
+        <div className="grid max-w-3xl grid-cols-1 gap-6 rounded-xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:grid-cols-[1fr_1.4fr]">
+          <div className="flex flex-row gap-6 sm:flex-col">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-white/60">När</p>
+              <p className="mt-1 font-semibold">12–17 maj 2027</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wide text-white/60">Pris</p>
+              <p className="mt-1 font-semibold">9 995 kr, allt inkluderat</p>
+            </div>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-white/60">Ingår</p>
-            <p className="mt-1 font-semibold">
-              Yoga, workshop, brunch, middag och del i dubbelrum
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-bold uppercase tracking-wide text-white/60">Pris</p>
-            <p className="mt-1 font-semibold">9 995 kr, allt inkluderat</p>
+            <p className="mb-2 text-xs font-bold uppercase tracking-wide text-white/60">Ingår</p>
+            <ul className="space-y-1.5">
+              {[
+                "Yoga varje morgon",
+                "Workshops utvalda eftermiddagar",
+                "Brunch och middag varje dag",
+                "Delat dubbelrum med eget badrum",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm font-semibold">
+                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-accentsoft" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

@@ -17,7 +17,7 @@ export default function AuthModal() {
   return (
     <Modal title="Skapa konto" onClose={closeAuth}>
       <p className="mb-6 text-sm text-muted">
-        Har du redan ett konto? <span className="font-semibold text-ink">Logga in här.</span>{" "}
+        Har du redan ett konto? <span className="italic text-ink underline">Logga in här.</span>{" "}
         Detta är en demo, ingen riktig inloggning krävs, fyll bara i
         valfritt namn och e-post för att fortsätta.
       </p>
