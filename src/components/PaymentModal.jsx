@@ -19,7 +19,7 @@ export default function PaymentModal() {
       </div>
 
       <p className="mb-6 text-sm text-muted">
-        Demo — ingen riktig betalning sker. Fyll i valfria siffror.
+        Demo. Ingen riktig betalning sker, fyll bara i valfria siffror.
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">

@@ -16,7 +16,7 @@ const classes = [
   },
   {
     name: "Sound Healing",
-    desc: "Liggande, guidad avslappning till klangskålar och gonggong. Inget rörelsepass — bara vila, djupt och medvetet.",
+    desc: "Liggande, guidad avslappning till klangskålar och gonggong. Inget rörelsepass, bara vila, djupt och medvetet.",
     meta: "50 min · Alla nivåer",
   },
 ];
@@ -28,7 +28,7 @@ export default function Classes() {
         <div className="mb-12 max-w-[60ch]">
           <p className="mb-3 text-sm font-bold uppercase tracking-widest text-accent">Klasser</p>
           <h2 id="klasser-heading" className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
-            Fyra sätt att komma hem i kroppen
+            Fyra klasser att välja mellan
           </h2>
         </div>
 

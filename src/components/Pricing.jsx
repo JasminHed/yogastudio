@@ -7,11 +7,6 @@ const plans = [
     desc: "Ett enskilt pass, ingen bindningstid. Perfekt för att testa studion.",
   },
   {
-    name: "Klippkort",
-    price: "1 800 kr",
-    desc: "10 pass att använda fritt under 4 månader. Delas inte mellan personer.",
-  },
-  {
     name: "Månadskort",
     price: "650 kr",
     unit: "/mån",
@@ -38,7 +33,7 @@ export default function Pricing() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan) => {
           const active = membership === plan.name;
           return (

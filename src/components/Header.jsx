@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useBooking } from "../context/BookingContext.jsx";
+import { scrollToId } from "../lib/scrollTo.js";
 
 const links = [
   { href: "#klasser", label: "Klasser" },
@@ -15,7 +16,14 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-line bg-white/90 px-[6vw] py-6 backdrop-blur">
-      <a href="#top" className="text-xl font-extrabold tracking-tight text-ink">
+      <a
+        href="#top"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToId("top");
+        }}
+        className="text-xl font-extrabold tracking-tight text-ink"
+      >
         Yogastudio
       </a>
 
@@ -43,7 +51,11 @@ export default function Header() {
           <a
             key={link.href}
             href={link.href}
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen(false);
+              scrollToId(link.href.slice(1));
+            }}
             className="border-b border-transparent pb-1 text-[0.95rem] text-ink hover:border-ink"
           >
             {link.label}
@@ -53,7 +65,11 @@ export default function Header() {
         {user ? (
           <a
             href="#mina-bokningar"
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              setOpen(false);
+              scrollToId("mina-bokningar");
+            }}
             className="rounded bg-ink px-4 py-2 text-sm font-bold text-white hover:bg-accent"
           >
             Hej, {user.name.split(" ")[0] || user.name}

@@ -7,11 +7,8 @@ export default function Footer() {
           Hornsgatan 45, 118 49 Stockholm
           <br />
           <a className="hover:text-ink" href="mailto:hej@yogastudio.se">hej@yogastudio.se</a>
-          <br />
-          <a className="hover:text-ink" href="tel:+46701234567">070-123 45 67</a>
         </address>
       </div>
-      <p className="text-sm text-muted">Öppet alla dagar, se schema för tider. © 2026 Yogastudio.</p>
     </footer>
   );
 }

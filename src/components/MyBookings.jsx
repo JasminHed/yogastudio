@@ -22,7 +22,7 @@ export default function MyBookings() {
         )}
 
         {bookings.length === 0 ? (
-          <p className="text-white/70">Inga bokningar än — välj ett pass i schemat eller en behandling ovan.</p>
+          <p className="text-white/70">Inga bokningar än. Välj ett pass i schemat för att boka.</p>
         ) : (
           <ul className="max-w-[640px] divide-y divide-line rounded-xl bg-white">
             {bookings.map((b) => (

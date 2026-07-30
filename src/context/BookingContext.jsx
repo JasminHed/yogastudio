@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { scrollToId } from "../lib/scrollTo.js";
 
 const BookingContext = createContext(null);
 
@@ -13,9 +14,7 @@ export function BookingProvider({ children }) {
 
   function goToDashboard() {
     // Wait for the next render so #mina-bokningar exists before scrolling.
-    setTimeout(() => {
-      document.getElementById("mina-bokningar")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
+    setTimeout(() => scrollToId("mina-bokningar"), 50);
   }
 
   function login(name, email) {
