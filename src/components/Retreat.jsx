@@ -24,8 +24,8 @@ export default function Retreat() {
           <p className="mb-8 max-w-[46ch] text-white/80">
             En gång om året reser vi bort tillsammans. Nästa retreat går till
             Österlen i maj, sex dagar med yoga, workshops, gemensam brunch
-            och middag varje kväll, i delat dubbelrum. Vi håller gruppen
-            liten, max tolv personer, så det finns tid för alla.
+            och middag. Vi håller gruppen liten, max tolv personer, så det
+            finns tid för alla.
           </p>
         </div>
 

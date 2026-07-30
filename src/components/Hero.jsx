@@ -24,11 +24,11 @@ export default function Hero() {
           Yoga i Stockholm
         </p>
         <h1 className="mb-6 max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-          Rum att andas ut i.
+          Plats för lugn, yoga och gemenskap.
         </h1>
         <p className="mb-8 max-w-[42ch] text-lg text-white/85">
-          Vinyasa, Yin, Hatha och Sound Healing i en ljus studio på Södermalm.
-          Drop-in, klass, månadskort eller årskort. Du väljer takten.
+          Här hittar du en lugn och trygg plats att praktisera yoga på,
+          bygga gemenskap och hitta behandlingar som får dig att må bättre.
         </p>
         <div className="flex flex-wrap gap-4">
           <a

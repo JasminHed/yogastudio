@@ -17,7 +17,7 @@ function slotId(day, cls) {
 }
 
 function DayColumn({ day, classes }) {
-  const { user, isBooked, requestBooking, cancelBooking } = useBooking();
+  const { user, isBooked, requestBooking, cancelBooking, hasAccess } = useBooking();
 
   return (
     <div className="overflow-hidden rounded-lg border border-line bg-white shadow-sm">
@@ -43,7 +43,7 @@ function DayColumn({ day, classes }) {
                 >
                   ✓ Bokad
                 </button>
-              ) : user ? (
+              ) : user && hasAccess() ? (
                 <button
                   type="button"
                   onClick={() =>
@@ -52,6 +52,16 @@ function DayColumn({ day, classes }) {
                   className="whitespace-nowrap rounded bg-ink px-2.5 py-1 text-xs font-bold text-white hover:bg-accent"
                 >
                   Boka
+                </button>
+              ) : user ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    requestBooking({ id, kind: "class", label: `${day} ${cls.time} ${cls.name}`, price: dropInPrice })
+                  }
+                  className="whitespace-nowrap rounded border border-line px-2.5 py-1 text-xs font-bold text-muted hover:border-ink hover:text-ink"
+                >
+                  Köp för att boka
                 </button>
               ) : null}
             </div>
